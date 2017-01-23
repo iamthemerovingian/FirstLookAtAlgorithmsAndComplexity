@@ -33,7 +33,7 @@ namespace FirstLookAtAlgorithmsAndComplexity
         {
             //Algorithms with different sizes of Arrays
 
-            //O(N) 
+            //O(N)
             BigONotation(10000);
             GenerateRandomNumberArray();
             linearSearchForValue(101);
