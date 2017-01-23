@@ -84,9 +84,86 @@ namespace FirstLookAtAlgorithmsAndComplexity
             GenerateRandomNumberArray();
             BinarySearchForValue(20);
 
+            //O(N log N)
+            BigONotation(10000);
+            GenerateRandomNumberArray();
+            sw.Reset();
+            sw.Start();
+            QuickSort(0,theArray.Length - 1);
+            sw.Stop();
+            PrintResults("O(N log N)");
+
+            BigONotation(20000);
+            GenerateRandomNumberArray();
+            sw.Reset();
+            sw.Start();
+            QuickSort(0, theArray.Length - 1);
+            sw.Stop();
+            PrintResults("O(N log N)");
+
+            BigONotation(30000);
+            GenerateRandomNumberArray();
+            sw.Reset();
+            sw.Start();
+            QuickSort(0, theArray.Length - 1);
+            sw.Stop();
+            PrintResults("O(N log N)");
+
+            BigONotation(40000);
+            GenerateRandomNumberArray();
+            sw.Reset();
+            sw.Start();
+            QuickSort(0, theArray.Length - 1);
+            sw.Stop();
+            PrintResults("O(N log N)");
 
 
+        }
 
+        private static void QuickSort(int left, int right)
+        {
+           
+            if (right - left <= 0)
+            {
+                return;
+            }
+            else
+            {
+                var pivot = theArray[right];
+                var pivotLocation = partitionArray(left, right, pivot);
+                QuickSort(left, pivotLocation - 1);
+                QuickSort(pivotLocation + 1, right);
+            }
+           
+        }
+
+        private static int partitionArray(int left, int right, int pivot)
+        {
+            var leftPointer = left - 1;
+            var rightPointer = right;
+
+            while (true)
+            {
+                while (theArray[++leftPointer] < pivot)
+                {
+
+                }
+                while (rightPointer > 0 && theArray[--rightPointer] > pivot)
+                {
+
+                }
+                if (leftPointer >= rightPointer)
+                {
+                    break;
+                }
+                else
+                {
+                    swapValues(leftPointer, rightPointer);
+                }
+            }
+
+            swapValues(leftPointer, right);
+            return leftPointer;
         }
 
         private static void BinarySearchForValue(int value)
