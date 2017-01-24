@@ -34,87 +34,95 @@ namespace FirstLookAtAlgorithmsAndComplexity
             //Algorithms with different sizes of Arrays
 
             //O(N)
-            BigONotation(10000);
+            BigONotation(10);
             GenerateRandomNumberArray();
             linearSearchForValue(101);
 
-            BigONotation(20000);
+            BigONotation(20);
             GenerateRandomNumberArray();
             linearSearchForValue(101);
 
-            BigONotation(30000);
+            BigONotation(30);
             GenerateRandomNumberArray();
             linearSearchForValue(101);
 
-            BigONotation(40000);
+            BigONotation(40);
             GenerateRandomNumberArray();
             linearSearchForValue(101);
 
             //O(N^2)
-            BigONotation(10000);
+            BigONotation(10);
             GenerateRandomNumberArray();
             BubbleSort();
 
-            BigONotation(20000);
+            BigONotation(20);
             GenerateRandomNumberArray();
             BubbleSort();
 
-            BigONotation(30000);
+            BigONotation(30);
             GenerateRandomNumberArray();
             BubbleSort();
 
-            BigONotation(40000);
+            BigONotation(40);
             GenerateRandomNumberArray();
             BubbleSort();
 
             //O(log N)
-            BigONotation(10000);
+            BigONotation(10);
             GenerateRandomNumberArray();
             BinarySearchForValue(20);
 
-            BigONotation(20000);
+            BigONotation(20);
             GenerateRandomNumberArray();
             BinarySearchForValue(20);
 
-            BigONotation(30000);
+            BigONotation(30);
             GenerateRandomNumberArray();
             BinarySearchForValue(20);
 
-            BigONotation(40000);
+            BigONotation(40);
             GenerateRandomNumberArray();
             BinarySearchForValue(20);
 
             //O(N log N)
-            BigONotation(10000);
+            BigONotation(10);
             GenerateRandomNumberArray();
+            PrintArray();
             sw.Reset();
             sw.Start();
             QuickSort(0,theArray.Length - 1);
             sw.Stop();
+            PrintArray();
             PrintResults("O(N log N)");
 
-            BigONotation(20000);
+            BigONotation(20);
             GenerateRandomNumberArray();
+            PrintArray();
             sw.Reset();
             sw.Start();
             QuickSort(0, theArray.Length - 1);
             sw.Stop();
+            PrintArray();
             PrintResults("O(N log N)");
 
-            BigONotation(30000);
+            BigONotation(30);
             GenerateRandomNumberArray();
+            PrintArray();
             sw.Reset();
             sw.Start();
             QuickSort(0, theArray.Length - 1);
             sw.Stop();
+            PrintArray();
             PrintResults("O(N log N)");
 
-            BigONotation(40000);
+            BigONotation(40);
             GenerateRandomNumberArray();
+            PrintArray();
             sw.Reset();
             sw.Start();
             QuickSort(0, theArray.Length - 1);
             sw.Stop();
+            PrintArray();
             PrintResults("O(N log N)");
 
 
@@ -129,40 +137,75 @@ namespace FirstLookAtAlgorithmsAndComplexity
             }
             else
             {
-                var pivot = theArray[right];
-                var pivotLocation = partitionArray(left, right, pivot);
+                var pivotValue = theArray[right];
+
+                Console.WriteLine("Value in right " + theArray[right]
+
+                    + " is made the pivot");
+
+
+                Console.WriteLine("left = " + left + " right= " + right
+                    + " pivot= " + pivotValue + " sent to be partitioned");
+
+
+                var pivotLocation = partitionArray(left, right, pivotValue);
+
+                Console.WriteLine("Value in left " + theArray[left]
+                    + " is made the pivot");
+
+
+                //This will begin partitioning and sorting the bit of the array from the left to the pivot-1.
                 QuickSort(left, pivotLocation - 1);
+                //This will begin partitioning and sorting the bit of the array from the right of the pivot till the end of the array.
+                //It is called recursively so that the same logic in the partitioning will be used over and over again to sort a bigger array by cutting it up into smaller chunks!
                 QuickSort(pivotLocation + 1, right);
             }
-           
         }
 
-        private static int partitionArray(int left, int right, int pivot)
+        private static int partitionArray(int left, int right, int pivotValue)
         {
             var leftPointer = left - 1;
             var rightPointer = right;
 
             while (true)
             {
-                while (theArray[++leftPointer] < pivot)
+                while (theArray[++leftPointer] < pivotValue)
                 {
-
+                    //Cycles through the Array untill it finds a value that is greater than or equal to the pivot.
                 }
-                while (rightPointer > 0 && theArray[--rightPointer] > pivot)
+                Console.WriteLine(theArray[leftPointer] + " in index "
+                    + leftPointer + " is bigger than the pivot value " + pivotValue);
+
+                while (rightPointer > 0 && theArray[--rightPointer] > pivotValue)
                 {
-
+                    //Cycles through the array untill it finds a value which is less than or equal to the pivot.
                 }
+
+                Console.WriteLine(theArray[rightPointer] + " in index "
+                    + rightPointer + " is smaller than the pivot value "
+                    + pivotValue);
+
+
                 if (leftPointer >= rightPointer)
                 {
+                    Console.WriteLine("left is >= right so start again");
                     break;
                 }
                 else
                 {
                     swapValues(leftPointer, rightPointer);
+                    Console.WriteLine(theArray[leftPointer] + " was swapped for "
+                        + theArray[rightPointer]);
                 }
+                PrintArray();
             }
 
+            Console.WriteLine(theArray[leftPointer] + " was swapped for "
+                        + theArray[right]);
+
             swapValues(leftPointer, right);
+            PrintArray();
+
             return leftPointer;
         }
 
@@ -195,9 +238,19 @@ namespace FirstLookAtAlgorithmsAndComplexity
 
                 timesThrough++;
             }
-
             sw.Stop();
+            PrintArray();
             PrintResults("O(log N)", timesThrough.ToString());
+        }
+
+        private static void PrintArray()
+        {
+            foreach (var item in theArray)
+            {
+                Console.Write(item + ", ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         private static void BubbleSort()
@@ -217,6 +270,7 @@ namespace FirstLookAtAlgorithmsAndComplexity
             }
 
             sw.Stop();
+            PrintArray();
             PrintResults("O(N^2)");
 
         }
