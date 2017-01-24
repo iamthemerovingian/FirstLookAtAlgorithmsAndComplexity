@@ -156,6 +156,7 @@ namespace FirstLookAtAlgorithmsAndComplexity
 
                 //This will begin partitioning and sorting the bit of the array from the left to the pivot-1.
                 QuickSort(left, pivotLocation - 1);
+
                 //This will begin partitioning and sorting the bit of the array from the right of the pivot till the end of the array.
                 //It is called recursively so that the same logic in the partitioning will be used over and over again to sort a bigger array by cutting it up into smaller chunks!
                 QuickSort(pivotLocation + 1, right);
